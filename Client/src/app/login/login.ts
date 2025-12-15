@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../services/auth';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ export class Login {
   public submitted = false;
   public errorMsg: string = "";
 
-  constructor(private api: Auth, private route: Router) {
+  constructor(private api: Auth, private route: Router, private cd: ChangeDetectorRef) {
 
   }
   public handleLogin(form: any) {
@@ -28,9 +28,14 @@ export class Login {
       return;
     }
     this.api.login(form.value).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         alert("User logged In");
-        this.route.navigate(['/contest']);
+        if (res.data.role === 'admin') {
+          this.route.navigate(['admin-dashboard']);
+        }
+        else
+          this.route.navigate(['/contest']);
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log("error");

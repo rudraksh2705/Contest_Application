@@ -4,6 +4,7 @@
             <h3 class="contest-name">{{contest.name}}</h3>
             <p class="contest-description">{{contest.description}}</p>
         </div>
-        <button class="attempt-button" (click) = "handleAttempt(contest._id)">Attempt</button>
+        <button class="attempt-button" (click)="handleAttempt(contest._id)">{{role==='Participant'?'Attempt' : 'View
+            Perfomance'}}</button>
     </div>
 </div>

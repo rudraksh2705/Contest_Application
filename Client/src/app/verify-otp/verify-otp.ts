@@ -25,9 +25,14 @@ export class VerifyOtp {
       return;
     }
     this.api.verifyOtp({ otp: form.value.otp, email: history.state.email }).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         alert("User logged in and verified");
-        this.route.navigate(['/contest']);
+        if (res.data.role === 'admin') {
+          this.route.navigate(['/admin-dashboard']);
+        }
+        else {
+          this.route.navigate(['/contest']);
+        }
       },
       error: (error) => {
         this.errorMsg = error;

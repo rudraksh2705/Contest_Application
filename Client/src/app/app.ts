@@ -37,14 +37,15 @@ export class App {
       next: (res: any) => {
         console.log(res.data);
         this.user = res.data
-        alert("User is logged in");
-        this.cd.detectChanges();
-        if (this.user.role !== 'admin') {
-          this.Router.navigate(['/contest'])
-        }
-        else {
+        // alert("User is logged in");
+        console.log(this.user.role);
+        if (this.user.role === 'admin') {
           this.Router.navigate(['/admin-dashboard']);
         }
+        else {
+          this.Router.navigate(['/contest']);
+        }
+        this.cd.detectChanges();
       },
       error: (error) => {
         alert(error);

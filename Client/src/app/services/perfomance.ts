@@ -20,13 +20,11 @@ export class Perfomance {
     );
   }
 
-  getPerfomance(id: any) {
-    const url = `http://localhost:3000/api/v1/perfomance/${id}`;
+  getUserPerfomance(user: string) {
+    const url = `http://localhost:3000/api/v1/perfomance/user/${user}`;
     return this.http.get(url, { withCredentials: true }).pipe(catchError((error) => {
-      return throwError(() => {
-        return error.error.message;
-      })
-    }));
+      return throwError(() => error.error.message)
+    }))
   }
 
   viewAllPerfomance() {
@@ -36,5 +34,17 @@ export class Perfomance {
         return error.error.message;
       })
     }));
+  }
+
+  getContestPerfomance(id: string) {
+    const url = `http://localhost:3000/api/v1/perfomance/contest/${id}`;
+    return this.http.get(url, { withCredentials: true });
+  }
+
+  canAttemptContest(user: string, contest: string) {
+    const url = `http://localhost:3000/api/v1/perfomance/attempt/${contest}`
+    return this.http.post(url, { user }, { withCredentials: true }).pipe((catchError(error => {
+      return throwError(() => error.error.message);
+    })));
   }
 }

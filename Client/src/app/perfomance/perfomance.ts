@@ -40,39 +40,64 @@ export class PerfomanceComp {
   public perfomances: PerfomanceInterface[] = [];
   public errorMessage = "";
 
-  ngOnInit() {
-    console.log("entered");
-    this.AuthApi.getUser().subscribe({
+  public getPerfomanceDataContest(contestId: string) {
+    this.api.getContestPerfomance(contestId).subscribe({
       next: (res: any) => {
-        const id = res.data._id;
-        if (res.data.role === 'admin') {
-          this.api.viewAllPerfomance().subscribe({
-            next: (res: any) => {
-              this.perfomances = res.data;
-              console.log(this.perfomances);
-              this.cd.detectChanges();
-            },
-            error: (error) => {
-              this.errorMessage = error;
-            }
-          })
-        }
-        else {
-          this.api.getPerfomance(id).subscribe({
-            next: (res: any) => {
-              this.perfomances = res.data;
-              console.log(this.perfomances);
-              this.cd.detectChanges();
-            },
-            error: (error) => {
-              this.errorMessage = error;
-            }
-          })
-        }
+        this.perfomances = res.data;
+        this.cd.detectChanges();
       },
-      error: (error) => {
+      error: (error: any) => {
         this.errorMessage = error;
       }
-    });
+    })
+  }
+
+  public getPerfomanceDataUser(userId: string) {
+    this.api.getUserPerfomance(userId).subscribe({
+      next: (res: any) => {
+        this.perfomances = res.data;
+        console.log(res.data);
+        this.cd.detectChanges();
+      },
+      error: (error: any) => {
+        this.errorMessage = error;
+      }
+    })
+  }
+
+  ngOnInit() {
+    this.AuthApi.getUser().subscribe({
+      next: (res: any) => {
+        const UserId = res.data._id;
+        if (res.data.role === 'admin') {
+          const id = history.state.id;
+          console.log(id);
+          if (id)
+            this.getPerfomanceDataContest(id);
+          else
+            this.api.viewAllPerfomance().subscribe({
+              next: (res: any) => {
+                this.perfomances = res.data;
+                this.cd.detectChanges();
+                console.log(res.data);
+              },
+              error: (error) => {
+                this.errorMessage = error;
+                this.cd.detectChanges();
+              }
+            })
+          this.cd.detectChanges();
+        }
+        else {
+          console.log(UserId);
+          this.getPerfomanceDataUser(UserId);
+          this.cd.detectChanges();
+        }
+      },
+      error: (error: any) => {
+        this.errorMessage = error;
+        alert(error);
+      }
+    })
   }
 }

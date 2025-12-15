@@ -51,7 +51,7 @@ exports.ensureAuthenticated = catchAsync(async (req, res, next) => {
 
 exports.getUserBytoken = catchAsync(async (req, res, next) => {
     const { jwtToken } = req.cookies;
-    console.log(jwtToken);
+    
     if (!jwtToken) {
         return next(new appError(401, "User is not logged in"));
     }
