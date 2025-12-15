@@ -1,0 +1,9 @@
+<div class="contests-container">
+    <div *ngFor="let contest of contests" class="contest-card">
+        <div class="contest-content">
+            <h3 class="contest-name">{{contest.name}}</h3>
+            <p class="contest-description">{{contest.description}}</p>
+        </div>
+        <button class="attempt-button" (click) = "handleAttempt(contest._id)">Attempt</button>
+    </div>
+</div>

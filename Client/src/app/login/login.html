@@ -1,0 +1,19 @@
+<form #formData="ngForm" (ngSubmit)="handleLogin(formData)" class="login-form">
+    <label class="login-label">Email :</label>
+    <input class="login-input" type="text" placeholder="enter email" name="email" ngModel #emailRef="ngModel" required
+        email />
+    <p *ngIf="emailRef.errors?.['required'] && (submitted || emailRef.touched)">Email is Required</p>
+    <p *ngIf="emailRef.errors?.['email'] && (submitted || emailRef.touched || emailRef.dirty)">Enter a valid email</p>
+
+    <label class="login-label">Password :</label>
+    <input class="login-input" type="password" placeholder="enter password" minlength="8" ngModel #passwordRef="ngModel"
+        name="password" required />
+    <p *ngIf="passwordRef.errors?.['required'] && (submitted || passwordRef.touched)">Password is Required</p>
+    <p *ngIf="passwordRef.errors?.['minlength']">Password must be of minimum 8 characters</p>
+
+    <button type="submit" class="btn submit-btn">Login</button>
+
+    <p class="login-text">
+        Don't have an account?
+        <a routerLink="/register" class="login-link">Register</a>
+</form>

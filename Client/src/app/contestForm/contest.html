@@ -1,0 +1,25 @@
+<div class="form-container">
+  <form #formData="ngForm" (ngSubmit)="handleSubmit(formData)" class="contest-form">
+
+    <div class="form-group">
+      <label for="name">Name :</label>
+      <input type="text" id="name" ngModel #name="ngModel" required name="name" class="form-input" />
+      <p class="error" *ngIf="name.invalid && (name.touched || submitted)">Name is required</p>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description :</label>
+      <input type="text" id="description" required name="description" ngModel #description="ngModel"
+        class="form-input" />
+      <p class="error" *ngIf="description.invalid && (description.touched || submitted)">Description is required</p>
+    </div>
+
+    <div class="form-group">
+      <label for="file">Upload Data :</label>
+      <input type="file" id="file" required (change)="onFileChange($event)" class="form-input" />
+      <p class="error" *ngIf="submitted && !selectedFile">File Upload is required</p>
+    </div>
+
+    <button type="submit" class="submit-btn">Create Contest</button>
+  </form>
+</div>

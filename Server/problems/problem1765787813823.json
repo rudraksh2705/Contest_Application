@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the purpose of NgModule in Angular?",
+        "options": [
+            "Defines a module that groups components and services",
+            "Compiles TypeScript to JavaScript",
+            "Handles HTTP requests",
+            "Creates a new Angular project"
+        ],
+        "correct": "a"
+    },
+    {
+        "question": "Which directive is used for two-way data binding?",
+        "options": [
+            "ngIf",
+            "ngFor",
+            "ngModel",
+            "ngBind"
+        ],
+        "correct": "c"
+    },
+    {
+        "question": "What is an Angular Service used for?",
+        "options": [
+            "To manipulate the DOM",
+            "To share data and logic between components",
+            "To define HTML templates",
+            "To create Angular modules"
+        ],
+        "correct": "b"
+    },
+    {
+        "question": "Which command is used to generate a new component?",
+        "options": [
+            "ng new component",
+            "ng g c component-name",
+            "ng create component",
+            "ng add component"
+        ],
+        "correct": "b"
+    },
+    {
+        "question": "What is dependency injection in Angular?",
+        "options": [
+            "A way to manually create objects inside components",
+            "A technique to manage CSS styles",
+            "A design pattern where Angular provides required dependencies automatically",
+            "A method of routing"
+        ],
+        "correct": "c"
+    }
+]

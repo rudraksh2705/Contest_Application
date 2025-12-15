@@ -1,0 +1,28 @@
+<div class="performance-container">
+
+  <h2 class="heading">Recent Contest Performance</h2>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <ul class="performance-list" *ngIf="perfomances.length > 0">
+    <li class="performance-card" *ngFor="let perf of perfomances">
+
+      <div class="left">
+        <p class="contest-name">{{ perf.contest?.name }}</p>
+        <p class="user-name">
+          {{ perf.user?.name }} ({{ perf.user?.email }})
+        </p>
+      </div>
+
+      <div class="right">
+        <p>Score: <span>{{ perf.score }}</span></p>
+      </div>
+
+    </li>
+  </ul>
+
+  <p class="info" *ngIf="perfomances.length === 0">
+    No performance data available
+  </p>
+
+</div>

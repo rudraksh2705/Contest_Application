@@ -1,0 +1,16 @@
+<div class="problems-container">
+    <div *ngFor="let problem of problems.problems; let i = index" class="problem-item">
+        <div class="question">
+            <strong>Q{{i + 1}}.</strong> {{problem.question}}
+        </div>
+
+        <div class="options">
+            <div *ngFor="let option of problem.options; let j = index" class="option">
+                <input [(ngModel)] = "selectedAnswers[i]" type="radio" [name]="'problem_' + i" [id]="'option_' + i + '_' + j"
+                    [value]="String.fromCharCode(97+j)">
+                <label [for]="'option_' + i + '_' + j">{{option}}</label>
+            </div>
+        </div>
+    </div>
+   <button class="submit-btn" (click)="handleSubmit()">Submit Test</button>
+</div>

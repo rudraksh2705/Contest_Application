@@ -1,0 +1,9 @@
+<form class="login-form" #formData="ngForm" (ngSubmit)="handleSubmitOtp(formData)">
+    <label class="form-label">Enter OTP :</label>
+    <input class="form-input" type="text" placeholder="enter Otp" ngModel name="otp" #otpRef="ngModel" required
+        minlength="6" maxlength="6" />
+    <p *ngIf="(otpRef.errors?.['required'] && submitted)">Otp is required</p>
+    <p *ngIf="(otpRef.errors?.['minlength'] || otpRef.errors?.['minlength']) && (submitted || otpRef.touched ) ">Otp must
+        be of 6 length</p>
+    <button type="submit" class="btn submit-btn">Register</button>
+</form>

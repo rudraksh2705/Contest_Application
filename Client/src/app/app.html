@@ -1,0 +1,20 @@
+<nav class="navbar" *ngIf="user">
+  {{user | json}}
+  <div class="nav-brand">
+    <div class="logo">QuizApp</div>
+    <div class="user-welcome">Hello, {{user.name}}!</div>
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/contest" class="nav-link">Contests</a>
+    <a routerLink="/performance" class="nav-link">Performance</a>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="guest-view" *ngIf="!user">
+  <div class="app-title">Quiz Application</div>
+  <p>Please login to access contests</p>
+</div>
+
+<router-outlet></router-outlet>

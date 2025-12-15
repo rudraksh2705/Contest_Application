@@ -1,0 +1,29 @@
+<div class="form-container">
+    <form #regForm="ngForm" (ngSubmit)="requestOtp(regForm)" class="auth-form">
+        {{regForm.value |json}}
+        <label class="form-label">Name :</label>
+        <input class="form-input" type="text" ngModel placeholder="enter name" name="name" required
+            #nameRef="ngModel" />
+        <p *ngIf="nameRef.errors?.['required'] && (nameRef.touched)">Name is required</p>
+
+        <label class="form-label">Email :</label>
+        <input class="form-input" type="text" placeholder="enter email" name="email" ngModel required email
+            #emailRef="ngModel" />
+        <p *ngIf="emailRef.errors?.['required'] && (emailRef.touched)">Email is required</p>
+        <p *ngIf="emailRef.errors?.['email'] && (emailRef.touched)">Enter a valid email</p>
+
+        <label class="form-label">Password :</label>
+        <input class="form-input" ngModel type="password" placeholder="enter password" name="password" required
+            minlength="8" #passwordRef="ngModel" />
+        <p *ngIf="passwordRef.errors?.['required'] && (passwordRef.touched)">Password is required</p>
+        <p *ngIf="passwordRef.errors?.['minlength']">Password must be at least 8 characters</p>
+
+        <button class="btn request-btn" type="submit">Request Otp</button>
+
+    </form>
+
+    <p class="login-text">
+        Already have an account?
+        <a routerLink="/login" class="login-link">Log In</a>
+    </p>
+</div>
